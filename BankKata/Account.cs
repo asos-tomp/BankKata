@@ -23,7 +23,7 @@ namespace BankKata
 
         public void MakeWithdrawal(decimal withdrawal)
         {
-            throw new NotImplementedException();
+            _txHistory.HandleWithdrawal(withdrawal);
         }
     }
 }

@@ -5,13 +5,15 @@ namespace BankKata
     public interface ITxHistory
     {
         void HandleDeposit(decimal amount);
+        void HandleWithdrawal(decimal @decimal);
     }
 
     public class TxHistory : ITxHistory
     {
         private readonly Calendar _calendarObject;
-        private decimal _amount;
+        private decimal _depositAmount;
         private DateTime _date;
+        private decimal _withdrawalAmount;
 
         public TxHistory(Calendar calendarObject)
         {
@@ -20,7 +22,9 @@ namespace BankKata
 
         protected bool Equals(TxHistory other)
         {
-            return this._amount == other._amount && this._date == other._date;
+            return this._depositAmount == other._depositAmount && 
+                this._date == other._date &&
+                this._withdrawalAmount == other._withdrawalAmount;
         }
 
         public override bool Equals(object obj)
@@ -38,8 +42,13 @@ namespace BankKata
 
         public void HandleDeposit(decimal amount)
         {
-            _amount = amount;
+            _depositAmount = amount;
             _date = _calendarObject.GetDate();
+        }
+
+        public void HandleWithdrawal(decimal amount)
+        {
+            _withdrawalAmount = amount;
         }
     }
 }
