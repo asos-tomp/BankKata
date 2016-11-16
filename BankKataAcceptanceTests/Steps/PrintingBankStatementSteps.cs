@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using Castle.Core.Internal;
+using BankKata;
 using Moq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -10,12 +9,16 @@ namespace BankKataAcceptanceTests.Steps
     [Binding]
     public class PrintingBankStatementSteps
     {
-        private readonly Account _account = new Account();
-        private readonly Mock<BankConsole> _console = new Mock<BankConsole>();
+        private Account _account;
+        private Mock<BankConsole> _console;
+        private TxHistory _txHistory;
 
         [BeforeScenario]
         public void SetUp()
         {
+            _console = new Mock<BankConsole>();
+            _txHistory = new TxHistory();
+            _account = new Account(_txHistory);
         }
 
         [Given(@"A deposit of (.*) on (.*)")]
@@ -47,32 +50,6 @@ namespace BankKataAcceptanceTests.Steps
             _console.Setup(x => x.PrintLine(lines[3])).Callback(() => Assert.That(callOrder++, Is.EqualTo(3)));
 
             _console.Verify(c => c.PrintLine(It.IsAny<string>()), Times.Exactly(lines.Length));
-        }
-    }
-
-    public class BankConsole
-    {
-        public virtual void PrintLine(string line)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    public class Account
-    {
-        public void PrintStatement()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void MakeDeposit(decimal deposit)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void MakeWithdrawal(decimal withdrawal)
-        {
-            throw new NotImplementedException();
         }
     }
 }
