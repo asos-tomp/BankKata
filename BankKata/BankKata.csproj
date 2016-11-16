@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="BankConsole.cs" />
+    <Compile Include="Calendar.cs" />
     <Compile Include="TxHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

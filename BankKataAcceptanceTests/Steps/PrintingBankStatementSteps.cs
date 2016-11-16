@@ -12,12 +12,14 @@ namespace BankKataAcceptanceTests.Steps
         private Account _account;
         private Mock<BankConsole> _console;
         private TxHistory _txHistory;
+        private Mock<Calendar> _calendar;
 
         [BeforeScenario]
         public void SetUp()
         {
+            _calendar = new Mock<Calendar>();
             _console = new Mock<BankConsole>();
-            _txHistory = new TxHistory();
+            _txHistory = new TxHistory(_calendar.Object);
             _account = new Account(_txHistory);
         }
 
