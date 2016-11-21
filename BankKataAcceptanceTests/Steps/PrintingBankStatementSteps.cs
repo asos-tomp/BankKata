@@ -13,6 +13,7 @@ namespace BankKataAcceptanceTests.Steps
         private Mock<BankConsole> _console;
         private TxHistory _txHistory;
         private Mock<Calendar> _calendar;
+        private StatementPrinter _statementPrinter;
 
         [BeforeScenario]
         public void SetUp()
@@ -20,7 +21,8 @@ namespace BankKataAcceptanceTests.Steps
             _calendar = new Mock<Calendar>();
             _console = new Mock<BankConsole>();
             _txHistory = new TxHistory(_calendar.Object);
-            _account = new Account(_txHistory);
+            _statementPrinter = new StatementPrinter();
+            _account = new Account(_txHistory, _statementPrinter);
         }
 
         [Given(@"A deposit of (.*) on (.*)")]
@@ -44,7 +46,7 @@ namespace BankKataAcceptanceTests.Steps
         [Then(@"My statement is")]
         public void ThenMyStatementIs(string statementText)
         {
-            var lines = statementText.Split(Convert.ToChar(Environment.NewLine));
+            var lines = statementText.Split(Environment.NewLine.ToCharArray());
             var callOrder = 0;
             _console.Setup(x => x.PrintLine(lines[0])).Callback(() => Assert.That(callOrder++, Is.EqualTo(0)));
             _console.Setup(x => x.PrintLine(lines[1])).Callback(() => Assert.That(callOrder++, Is.EqualTo(1)));

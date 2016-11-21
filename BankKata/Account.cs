@@ -5,15 +5,17 @@ namespace BankKata
     public class Account
     {
         private readonly ITxHistory _txHistory;
+        private readonly IStatementPrinter _statementPrinter;
 
-        public Account(ITxHistory txHistory)
+        public Account(ITxHistory txHistory, IStatementPrinter statementPrinter)
         {
             _txHistory = txHistory;
+            _statementPrinter = statementPrinter;
         }
 
         public void PrintStatement()
         {
-            throw new System.NotImplementedException();
+            _statementPrinter.PrintStatement(_txHistory);
         }
 
         public void MakeDeposit(decimal deposit)
