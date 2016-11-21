@@ -49,6 +49,7 @@ namespace BankKata
         public void HandleWithdrawal(decimal amount)
         {
             _withdrawalAmount = amount;
+            _date = _calendarObject.GetDate();
         }
     }
 }
