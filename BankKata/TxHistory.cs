@@ -31,16 +31,7 @@ namespace BankKata
             var thisFirstTx = this._transactions.FirstOrDefault();
             var otherFirstTx = other._transactions.FirstOrDefault();
 
-            if (thisFirstTx == null && otherFirstTx != null)
-                return false;
-            if (thisFirstTx != null && otherFirstTx == null)
-                return false;
-            if (thisFirstTx == null && otherFirstTx == null)
-                return true;
-
-            return thisFirstTx.Amount == otherFirstTx.Amount &&
-                   thisFirstTx.Date == otherFirstTx.Date &&
-                   thisFirstTx.TxType == otherFirstTx.TxType;
+            return thisFirstTx == otherFirstTx;
         }
 
         public override bool Equals(object obj)
