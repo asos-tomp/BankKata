@@ -21,7 +21,7 @@ namespace BankKataAcceptanceTests.Steps
             _calendar = new Mock<Calendar>();
             _console = new Mock<BankConsole>();
             _txHistory = new TxHistory(_calendar.Object);
-            _statementPrinter = new StatementPrinter();
+            _statementPrinter = new StatementPrinter(_console.Object);
             _account = new Account(_txHistory, _statementPrinter);
         }
 

@@ -36,7 +36,7 @@ namespace BankKataTests
         }
 
         [Test]
-        public void call_the_statement_printer_with_the_tx_history_when_printing()
+        public void invoke_the_statement_printer_with_the_tx_history_when_printing()
         {
             _account.PrintStatement();
 
