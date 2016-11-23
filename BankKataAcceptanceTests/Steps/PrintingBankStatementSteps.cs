@@ -52,7 +52,7 @@ namespace BankKataAcceptanceTests.Steps
         [Then(@"My statement is")]
         public void ThenMyStatementIs(string statementText)
         {
-            var lines = statementText.Split(Environment.NewLine.ToCharArray());
+            var lines = statementText.Split(new [] { "\r\n" }, StringSplitOptions.None);
             var callOrder = 0;
             _console.Setup(x => x.PrintLine(lines[0])).Callback(() => Assert.That(callOrder++, Is.EqualTo(0)));
             _console.Setup(x => x.PrintLine(lines[1])).Callback(() => Assert.That(callOrder++, Is.EqualTo(1)));
