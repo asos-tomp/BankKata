@@ -57,12 +57,14 @@ namespace BankKata
         public TxType TxType { get; private set; }
         public decimal Amount { get; private set; }
         public DateTime Date { get; private set; }
+        public decimal Balance { get; private set; }
 
-        public TxRecord(TxType txType, decimal amount, DateTime date)
+        public TxRecord(TxType txType, decimal amount, DateTime date, decimal balance)
         {
             TxType = txType;
             Amount = amount;
             Date = date;
+            Balance = balance;
         }
     }
 }

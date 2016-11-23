@@ -19,11 +19,13 @@ namespace BankKata
         private DateTime _date;
         private decimal _withdrawalAmount;
         private List<TxRecord> _transactions;
+        private decimal _balance;
 
         public TxHistory(Calendar calendarObject)
         {
             _calendarObject = calendarObject;
             _transactions = new List<TxRecord>();
+            _balance = 0m;
         }
 
         protected bool Equals(TxHistory other)
@@ -49,12 +51,12 @@ namespace BankKata
 
         public void HandleDeposit(decimal amount)
         {
-            _transactions.Add(new TxRecord(TxType.Deposit, amount, _calendarObject.GetDate()));
+            _transactions.Add(new TxRecord(TxType.Deposit, amount, _calendarObject.GetDate(), _balance));
         }
 
         public void HandleWithdrawal(decimal amount)
         {
-            _transactions.Add(new TxRecord(TxType.Withdrawal, amount, _calendarObject.GetDate()));
+            _transactions.Add(new TxRecord(TxType.Withdrawal, amount, _calendarObject.GetDate(), _balance));
         }
 
         public IEnumerable<TxRecord> Transactions()

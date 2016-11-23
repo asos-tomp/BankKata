@@ -25,7 +25,7 @@ namespace BankKataAcceptanceTests.Steps
             _console = new Mock<BankConsole>();
             _txHistory = new TxHistory(_calendar.Object);
             _txRecordPrinter = new TxRecordPrinter(_console.Object, new CultureInfo("en-GB"));
-            _statementPrinter = new StatementPrinter(_console.Object, _txRecordPrinter);
+            _statementPrinter = new StatementPrinter(_console.Object, _txRecordPrinter, _calendar.Object);
             _account = new Account(_txHistory, _statementPrinter);
         }
 
