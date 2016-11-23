@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BankKata;
 using Moq;
 using NUnit.Framework;
@@ -88,6 +89,16 @@ namespace BankKataTests
             otherTxHistory.HandleWithdrawal(10);
 
             Assert.That(txHistory, Is.Not.EqualTo(otherTxHistory));
+        }
+
+        [Test]
+        public void contain_tx_records_with_correct_balance_given_two_withdrawals()
+        {
+            _txHistory.HandleWithdrawal(10);
+            _txHistory.HandleWithdrawal(20);
+
+            Assert.That(_txHistory.Transactions().First().Balance, Is.EqualTo(-10));
+            Assert.That(_txHistory.Transactions().ElementAt(1).Balance, Is.EqualTo(-30));
         }
     }
 }

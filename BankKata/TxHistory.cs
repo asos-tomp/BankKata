@@ -51,11 +51,13 @@ namespace BankKata
 
         public void HandleDeposit(decimal amount)
         {
+            _balance += amount;
             _transactions.Add(new TxRecord(TxType.Deposit, amount, _calendarObject.GetDate(), _balance));
         }
 
         public void HandleWithdrawal(decimal amount)
         {
+            _balance -= amount;
             _transactions.Add(new TxRecord(TxType.Withdrawal, amount, _calendarObject.GetDate(), _balance));
         }
 
