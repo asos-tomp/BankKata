@@ -35,70 +35,9 @@ namespace BankKataTests
         }
 
         [Test]
-        public void print_header_and_withdrawal_given_tx_history_with_single_withdrawal_of_5()
+        public void print_header_and_tx_record_given_one_transaction()
         {
-            _calendar.Setup(c => c.GetDate()).Returns(new DateTime(2012, 1, 14));
             _txHistory.HandleWithdrawal(5);
-
-            _statementPrinter.PrintStatement(_txHistory);
-
-            _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
-            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once);
-        }
-
-        [Test]
-        public void print_header_and_withdrawal_given_tx_history_with_single_withdrawal_of_6()
-        {
-            _calendar.Setup(c => c.GetDate()).Returns(new DateTime(2012, 1, 14));
-            _txHistory.HandleWithdrawal(6);
-
-            _statementPrinter.PrintStatement(_txHistory);
-
-            _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
-            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once);
-        }
-
-        [Test]
-        public void print_header_and_withdrawal_given_tx_history_with_single_withdrawal_of_7_on_14th_january_2012()
-        {
-            _calendar.Setup(c => c.GetDate()).Returns(new DateTime(2012, 1, 14));
-            _txHistory.HandleWithdrawal(7);
-
-            _statementPrinter.PrintStatement(_txHistory);
-
-            _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
-            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once);
-        }
-
-        [Test]
-        public void print_header_and_withdrawal_given_tx_history_with_single_withdrawal_of_7_on_15th_feburary_2013()
-        {
-            _calendar.Setup(c => c.GetDate()).Returns(new DateTime(2013, 2, 15));
-            _txHistory.HandleWithdrawal(7);
-
-            _statementPrinter.PrintStatement(_txHistory);
-
-            _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
-            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once);
-        }
-
-        [Test]
-        public void print_header_and_deposit_given_tx_history_with_single_deposit_of_7_on_15th_feburary_2013()
-        {
-            _calendar.Setup(c => c.GetDate()).Returns(new DateTime(2013, 2, 15));
-            _txHistory.HandleDeposit(7);
-
-            _statementPrinter.PrintStatement(_txHistory);
-
-            _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
-            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once);
-        }
-
-        [Test]
-        public void print_header_and_deposit_given_tx_history_with_single_deposit_of_6_on_15th_feburary_2013()
-        {
-            _calendar.Setup(c => c.GetDate()).Returns(new DateTime(2013, 2, 15));
-            _txHistory.HandleDeposit(6);
 
             _statementPrinter.PrintStatement(_txHistory);
 

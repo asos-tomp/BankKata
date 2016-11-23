@@ -42,10 +42,13 @@
     <Compile Include="Account.cs" />
     <Compile Include="BankConsole.cs" />
     <Compile Include="Calendar.cs" />
+    <Compile Include="IPrintable.cs" />
+    <Compile Include="IPrinter.cs" />
     <Compile Include="StatementPrinter.cs" />
     <Compile Include="TxHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TxRecord.cs" />
+    <Compile Include="TxRecordPrinter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

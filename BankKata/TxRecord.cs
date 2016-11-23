@@ -8,11 +8,6 @@ namespace BankKata
         Deposit
     }
 
-    public interface IPrintable
-    {
-        void Accept<T>(IPrinter<TxRecord> printer) where T : IPrintable;
-    }
-
     public class TxRecord : IPrintable
     {
         protected bool Equals(TxRecord other)
