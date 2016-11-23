@@ -43,6 +43,21 @@ namespace BankKataTests
 
             _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
             _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once);
+            _txRecordPrinter.Verify(txrp => txrp.Print(It.IsAny<TxRecord>()), Times.Once);
+        }
+
+        [Test]
+        public void print_header_and_tx_record_given_two_transactions()
+        {
+            _txHistory.HandleWithdrawal(5);
+            _txHistory.HandleWithdrawal(6);
+
+            _statementPrinter.PrintStatement(_txHistory);
+
+            _console.Verify(c => c.PrintLine("date | credit | debit | balance"), Times.Once);
+            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().First()), Times.Once());
+            _txRecordPrinter.Verify(txrp => txrp.Print(_txHistory.Transactions().ElementAt(1)), Times.Once());
+            _txRecordPrinter.Verify(txrp => txrp.Print(It.IsAny<TxRecord>()), Times.Exactly(2));
         }
     }
 }

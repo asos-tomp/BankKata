@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using BankKata;
 using Moq;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using Calendar = BankKata.Calendar;
 
 namespace BankKataAcceptanceTests.Steps
 {
@@ -22,7 +24,7 @@ namespace BankKataAcceptanceTests.Steps
             _calendar = new Mock<Calendar>();
             _console = new Mock<BankConsole>();
             _txHistory = new TxHistory(_calendar.Object);
-            _txRecordPrinter = new TxRecordPrinter(_console.Object);
+            _txRecordPrinter = new TxRecordPrinter(_console.Object, new CultureInfo("en-GB"));
             _statementPrinter = new StatementPrinter(_console.Object, _txRecordPrinter);
             _account = new Account(_txHistory, _statementPrinter);
         }
@@ -30,12 +32,14 @@ namespace BankKataAcceptanceTests.Steps
         [Given(@"A deposit of (.*) on (.*)")]
         public void GivenADepositOfOn(decimal deposit, string date)
         {
+            _calendar.Setup(c => c.GetDate()).Returns(DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture));
             _account.MakeDeposit(deposit);
         }
         
         [Given(@"A withdrawal of (.*) on (.*)")]
         public void GivenAWithdrawalOfOn(decimal withdrawal, string date)
         {
+            _calendar.Setup(c => c.GetDate()).Returns(DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture));
             _account.MakeWithdrawal(withdrawal);
         }
         

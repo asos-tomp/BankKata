@@ -31,7 +31,7 @@ namespace BankKataAcceptanceTests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PrintingBankStatement", "\tIn order to know the state of the my account\r\n\tAs a client\r\n\tI want to print my " +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-GB"), "PrintingBankStatement", "\tIn order to know the state of the my account\r\n\tAs a client\r\n\tI want to print my " +
                     "statement", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
