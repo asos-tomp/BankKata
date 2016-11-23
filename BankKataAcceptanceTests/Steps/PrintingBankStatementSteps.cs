@@ -14,6 +14,7 @@ namespace BankKataAcceptanceTests.Steps
         private TxHistory _txHistory;
         private Mock<Calendar> _calendar;
         private StatementPrinter _statementPrinter;
+        private TxRecordPrinter _txRecordPrinter;
 
         [BeforeScenario]
         public void SetUp()
@@ -21,7 +22,8 @@ namespace BankKataAcceptanceTests.Steps
             _calendar = new Mock<Calendar>();
             _console = new Mock<BankConsole>();
             _txHistory = new TxHistory(_calendar.Object);
-            _statementPrinter = new StatementPrinter(_console.Object);
+            _txRecordPrinter = new TxRecordPrinter(_console.Object);
+            _statementPrinter = new StatementPrinter(_console.Object, _txRecordPrinter);
             _account = new Account(_txHistory, _statementPrinter);
         }
 
